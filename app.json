@@ -16,6 +16,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "zip.liem.midcalc",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -31,6 +32,11 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "da0791fa-aac7-48b1-a8bb-b0b662965464"
+      }
     }
   }
 }

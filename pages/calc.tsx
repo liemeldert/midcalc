@@ -1,18 +1,10 @@
 import React, { useCallback } from 'react';
-import {
-    View,
-    StyleSheet,
-    TextInput,
-    ScrollView,
-    NativeSyntheticEvent,
-    TextInputSubmitEditingEventData,
-    Text
-} from 'react-native';
-import { ThemedText} from "@/components/ThemedText";
+import { View, StyleSheet, TextInput, ScrollView, NativeSyntheticEvent, TextInputSubmitEditingEventData } from 'react-native';
+import { Text } from '~/components/ui/text';
 import debounce from 'lodash.debounce';
-import { parseAndEvaluateLaTeX } from '../../lib/BathP';
-import { CalcButtons } from '../../components/CalcButtons';
-import { CalcInput } from '../../components/CalcInput';
+import { parseAndEvaluateLaTeX } from '../lib/BathP';
+import { CalcButtons } from '~/components/CalcButtons';
+import { CalcInput } from '~/components/CalcInput';
 
 const styles = StyleSheet.create({
     container: {
@@ -110,17 +102,17 @@ export default function Calc() {
                 colorIndex++;
                 stack.push(color);
                 elements.push(
-                    <ThemedText key={i} style={{ color }}>
+                    <Text key={i} style={{ color }}>
                         {char}
-                    </ThemedText>
+                    </Text>
                 );
 
             } else if (char === ')') {
                 const color = stack.pop() || '#000';
                 elements.push(
-                    <ThemedText key={i} style={{ color }}>
+                    <Text key={i} style={{ color }}>
                         {char}
-                    </ThemedText>
+                    </Text>
                 );
                 colorIndex = Math.max(colorIndex - 1, 0);
             } else if (char === '^') {
@@ -128,17 +120,17 @@ export default function Calc() {
                 const exponent = expr[i + 1];
                 elements.pop(); // Remove base
                 elements.push(
-                    <ThemedText key={i} style={styles.baseText}>
+                    <Text key={i} style={styles.baseText}>
                         {base}
-                        <ThemedText style={styles.exponentText}>{exponent}</ThemedText>
-                    </ThemedText>
+                        <Text style={styles.exponentText}>{exponent}</Text>
+                    </Text>
                 );
                 i++; // Skip exponent character as it's already processed
             } else {
                 elements.push(
-                    <ThemedText key={i} style={{ color: '#000' }}>
+                    <Text key={i} style={{ color: '#000' }}>
                         {char}
-                    </ThemedText>
+                    </Text>
                 );
             }
         }
